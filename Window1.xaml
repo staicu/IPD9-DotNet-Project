@@ -1,5 +1,4 @@
-﻿
-<Window x:Class="MediaManager.Window1"
+﻿<Window x:Class="MediaManager.Window1"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   Title="Media Manager"
@@ -7,229 +6,319 @@
 	WindowState="Maximized"
 	Loaded="WindowLoaded">
 
-	<Window.Resources>
-	
-	
-		<!-- data TEMPLATES -->
+    <Window.Resources>
+        <!-- to hide columns -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+        <!-- data TEMPLATES -->
 
-		<DataTemplate DataType="{x:Type pd:ImageFile}">
-			<Border VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4" Margin="2" Background="White">
-				<Image Source="{Binding Image}" />
-			</Border>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type pd:Package1}">
-			<Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
-				<Image Source="{Binding Photo}" />
-			</Border>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type pd:Package2}">
-		    <Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
-		        <Image Source="{Binding Photo}" />
-		    </Border>
+        <DataTemplate DataType="{x:Type pd:ImageFile}">
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4" Margin="2" Background="White">
+                <Image Source="{Binding Image}" />
+            </Border>
         </DataTemplate>
 
-		<DataTemplate DataType="{x:Type pd:Package3}">
-		    <Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
-		        <Image Source="{Binding Photo}" />
-		    </Border>
+        <DataTemplate DataType="{x:Type pd:Package1}">
+            <Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
+                <Image Source="{Binding Photo}" />
+            </Border>
         </DataTemplate>
 
-		<!-- PHOTOLIST TEMPLATE -->
+        <DataTemplate DataType="{x:Type pd:Package2}">
+            <Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
+                <Image Source="{Binding Photo}" />
+            </Border>
+        </DataTemplate>
 
-		<Style x:Key="PhotoListStyle" TargetType="{x:Type ListBox}">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type ListBox}" >
-						<Border  >
-							<ScrollViewer 
+        <DataTemplate DataType="{x:Type pd:Package3}">
+            <Border Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Padding="3"  BorderBrush="#66000000" BorderThickness="1" MaxWidth="60" MaxHeight="60" >
+                <Image Source="{Binding Photo}" />
+            </Border>
+        </DataTemplate>
+
+        <!-- PHOTOLIST TEMPLATE -->
+
+        <Style x:Key="PhotoListStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}" >
+                        <Border  >
+                            <ScrollViewer 
 								VerticalScrollBarVisibility="Disabled" 
 								HorizontalScrollBarVisibility="Auto">
-								<StackPanel  
+                                <StackPanel  
 									IsItemsHost="True" 
 									Orientation="Horizontal" 
 									HorizontalAlignment="Left" />
-							</ScrollViewer>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-
-		
-		
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
 
-	</Window.Resources>
 
-	<Viewbox VerticalAlignment="Top" Stretch="Uniform">
 
-		<Grid Margin="20" Width="620" ShowGridLines="False" >
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="15" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="250" />
-				<RowDefinition Height="120" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="*" />
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition Width="400" />
-				<ColumnDefinition Width="160" />
-			</Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Style="{DynamicResource TitleText}"><Run Language="en-ca" Text="Media Files"/></TextBlock>
 
-            <ListBox Style="{DynamicResource PhotoListStyle}" 
-				Grid.Row="4" 
-				Grid.ColumnSpan="3" 
-				Name ="PhotoListBox" 
-				Margin="0,0,0,20" 
-				DataContext="{Binding Source={StaticResource Photos}}" 
-				SelectionChanged ="PhotoListSelection" 
-				ItemsSource="{Binding }" 
-				ItemContainerStyle="{DynamicResource PhotoListItem}" 
-				SelectedIndex="0" />
+    </Window.Resources>
 
-			<StackPanel
-				Grid.Row="3" Grid.Column="0">
+    <Viewbox VerticalAlignment="Top" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <GroupBox Name="Menu" Grid.Row="0">
 
-				<Button 
-				Name="RotateButton" 
-				VerticalAlignment="Bottom" 
-				HorizontalAlignment="Center" 
-				Click="Rotate" 
-				Width="55"  				
-				Margin="2">
-					Rotate
-				</Button>
+                <StackPanel>
+                    <ToggleButton x:Name="HideColumn0Button" IsChecked="True" Width="80" Height="40">Hide C0</ToggleButton>
 
-				<Button 
-				Name="BWButton" 
-				VerticalAlignment="Bottom" 
-				HorizontalAlignment="Center" 
-				Click="BlackAndWhite" 
-				Width="55"  				
-				Margin="2">
-					B&amp;W
-				</Button>
+                    <ToggleButton x:Name="HideColumn1Button" IsChecked="True" Width="80" Height="40">Hide C1</ToggleButton>
 
-				<Button 
-				Name="CropButton"
-				VerticalAlignment="Bottom" 
-				HorizontalAlignment="Center" 
-				Click="Crop" 
-				Width="55"  				
-				Margin="2">
-					Crop
-				</Button>
+                    <ToggleButton x:Name="HideColumn2Button" IsChecked="True" Width="80" Height="40">Hide C2</ToggleButton>
+                </StackPanel>
 
-			</StackPanel>
+            </GroupBox>
+            <GroupBox Name="Body" Grid.Row="1">
+                <Grid >
 
-			<Button Grid.Row="3" Grid.Column="0"
-			Name="UndoButton" 
-			VerticalAlignment="Bottom" 
-			HorizontalAlignment="Center" 
-			Click="Undo" 
-			IsEnabled="False" 
-			Width="55"  				
-			Margin="2">
-				Undo
-			</Button>
 
-			<Image Name="CurrentPhoto" 
-				Grid.Row="3" 
-				Grid.Column="1" 
-				Margin="10" 
-				MouseDown="OnMouseDown"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="400" />
+                        <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
 
-			<Grid 
-				Grid.Row="0" Grid.Column="1" 
-				HorizontalAlignment="Center" 
-				Margin="0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
 
-				<ComboBox
-					Grid.Row="0" Grid.Column="0" 
-					Margin="0,0,4,0" 
-					VerticalAlignment="Center" 
-					Name="PrintTypeComboBox" 
-					DataContext="{Binding Source={StaticResource PrintTypes}}"
-					ItemsSource="{Binding}" 
-					Width="110" 
-					SelectedIndex="0" />
+                    <!-- Column 0 -->
+                    <GroupBox Header="Column 0" 
+                              Name="ds"
+                              Margin="5,0,0,0"
+                              Grid.RowSpan="6" 
+                              Width="60"
+                              Grid.Column="0" 
+                              Visibility="{Binding Path=IsChecked, ElementName=HideColumn0Button, Converter={StaticResource BoolToVisConverter}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="250" />
+                                <RowDefinition Height="120" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel
+                               >
 
-                <Button 
-					Grid.Row="0" Grid.Column="1" 
-					Click="AddToShoppingCart" 
-					VerticalAlignment="Center" 
-					Width="100"  
-					IsDefault="True" Content="Save to List"/>
+                                <Button 
+                                    Name="RotateButton" 
+                                    VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Center" 
+                                    Click="Rotate" 
+                                    Width="55"  				
+                                    Margin="2">
+                                    Rotate
+                                </Button>
 
-                <Button 
-					Grid.Row="1" Grid.Column="1" 
-					Name="RemoveButton" 
-					Click="RemoveShoppingCartItem" 
-					VerticalAlignment="Center" 
-					IsEnabled="False" 
-					Width="100" 
-					Margin="10" >
-					Remove Item
-				</Button>
+                                <Button 
+                                    Name="BWButton" 
+                                    VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Center" 
+                                    Click="BlackAndWhite" 
+                                    Width="55"  				
+                                    Margin="2">
+                                    B&amp;W
+                                </Button>
 
-			</Grid>
+                                <Button 
+                                    Name="CropButton"
+                                    VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Center" 
+                                    Click="Crop" 
+                                    Width="55"  				
+                                    Margin="2">
+                                    Crop
+                                </Button>
 
-			<Grid Grid.Row="3" Grid.Column="2">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="20" />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-					Foreground="MidnightBlue" 
-					FontSize="13px" 
-					Margin="2" 
-					HorizontalAlignment="Center"><Run Language="en-ca" Text="Selected Files"/></TextBlock>
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ShoppingCartStyle}" 
-					Name="ShoppingCartListBox" 
-					Grid.Row="1" 
-					Width="160" 
-					DataContext="{Binding Source={StaticResource ShoppingCart}}" 
-					ItemContainerStyle="{DynamicResource ShoppingCartItem}" 
-					ItemsSource="{Binding}" />
-			</Grid>
-			
-			<StackPanel
-				Grid.Row="5" Grid.Column="2"  >
-				<Button 
-					Name="UploadButton"
-					Click="Upload" 
-					VerticalAlignment="Bottom" 
-					HorizontalAlignment="Center" 
-					Width="100"  				
-					Margin="2"
-					IsEnabled="False">
-					Sales List
-				</Button>
+                            </StackPanel>
 
-				<ProgressBar 
-					Name="UploadProgressBar" 
-					Grid.Row="6"
-					Grid.Column="2"
-					VerticalAlignment="Top" 
-					Margin="0,10,0,0" />
-			</StackPanel>
-		</Grid>
-	</Viewbox>
+                            <Button Grid.Row="3" Grid.Column="0"
+                                    Name="UndoButton" 
+                                    VerticalAlignment="Bottom" 
+                                    HorizontalAlignment="Center" 
+                                    Click="Undo" 
+                                    IsEnabled="False" 
+                                    Width="55"  				
+                                    Margin="2">
+                                Undo
+                            </Button>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Column 1 -->
+                    <GroupBox Header="Column 1" 
+                              Grid.RowSpan="6" 
+                              Grid.Column="1"
+                              Margin="5,0,0,0"
+                              Visibility="{Binding Path=IsChecked, ElementName=HideColumn1Button, Converter={StaticResource BoolToVisConverter}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="250" />
+                                <RowDefinition Height="120" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
+                            
+                            <TextBlock  ><Run Language="en-ca" Text="Media Files"/></TextBlock>
+                            <ListBox Style="{DynamicResource PhotoListStyle}" 
+                                         
+                                         
+                                         Name ="PhotoListBox" 
+                                         Margin="0,0,0,20" 
+                                         DataContext="{Binding Source={StaticResource Photos}}" 
+                                         SelectionChanged ="PhotoListSelection" 
+                                         ItemsSource="{Binding }" 
+                                         ItemContainerStyle="{DynamicResource PhotoListItem}" 
+                                         SelectedIndex="0" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                           
+                            <Image Name="CurrentPhoto" 
+                                       
+                                       Margin="10" 
+                                       MouseDown="OnMouseDown"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4">
+                           
+                            <Grid 
+                                   
+                                    HorizontalAlignment="Center" 
+                                    Margin="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <ComboBox
+                                        Grid.Row="0" Grid.Column="0" 
+                                        Margin="0,0,4,0" 
+                                        VerticalAlignment="Center" 
+                                        Name="PrintTypeComboBox" 
+                                        DataContext="{Binding Source={StaticResource PrintTypes}}"
+                                        ItemsSource="{Binding}" 
+                                        Width="110" 
+                                        SelectedIndex="0" />
+
+                                <Button 
+                                        Grid.Row="0" Grid.Column="1" 
+                                        Click="AddToShoppingCart" 
+                                        VerticalAlignment="Center" 
+                                        Width="100"  
+                                        IsDefault="True" Content="Save to List"/>
+
+                                <Button 
+                                        Grid.Row="1" Grid.Column="1" 
+                                        Name="RemoveButton" 
+                                        Click="RemoveShoppingCartItem" 
+                                        VerticalAlignment="Center" 
+                                        IsEnabled="False" 
+                                        Width="100" 
+                                        Margin="10" >
+                                    Remove Item
+                                </Button>
+
+                            </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Column 2 -->
+                    <GroupBox Header="Column 2" 
+                              Grid.RowSpan="6" 
+                              Margin="5,0,0,0"
+                              Grid.Column="2"
+                              Visibility="{Binding Path=IsChecked, ElementName=HideColumn2Button, Converter={StaticResource BoolToVisConverter}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="250" />
+                                <RowDefinition Height="120" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0">
+                                <TextBlock Grid.Row="0"
+                                               Foreground="MidnightBlue" 
+                                               FontSize="13px" 
+                                               Margin="2" 
+                                               HorizontalAlignment="Center"><Run Language="en-ca" Text="Selected Files"/></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3">
+                                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ShoppingCartStyle}" 
+                                             Name="ShoppingCartListBox" 
+                                             Grid.Row="1" 
+                                             Width="160" 
+                                             DataContext="{Binding Source={StaticResource ShoppingCart}}" 
+                                             ItemContainerStyle="{DynamicResource ShoppingCartItem}" 
+                                             ItemsSource="{Binding}" />
+
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                           
+                            <Button 
+                                        Name="UploadButton"
+                                        Click="Upload" 
+                                        VerticalAlignment="Bottom" 
+                                        HorizontalAlignment="Center" 
+                                        Width="100"  				
+                                        Margin="2"
+                                        IsEnabled="False">
+                                Sales List
+                            </Button>
+                                <ProgressBar 
+                                    Name="UploadProgressBar" 
+                                    Grid.Row="6"
+                                    Grid.Column="2"
+                                    VerticalAlignment="Top" 
+                                    Margin="0,10,0,0" />
+                            </StackPanel>
+
+                        </Grid>
+                    </GroupBox>
+
+
+
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5"/>
+                    <GridSplitter Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5"/>
+
+
+                   
+
+
+
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+    </Viewbox>
 </Window>
