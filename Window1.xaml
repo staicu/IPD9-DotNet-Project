@@ -60,7 +60,7 @@
 
     </Window.Resources>
 
-    <Viewbox VerticalAlignment="Top" Stretch="Uniform">
+    
 
         <Grid>
         <Grid.RowDefinitions>
@@ -77,7 +77,7 @@
                     <ColumnDefinition Width="*" MinWidth="150"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel  Grid.Column="0">
-                    <ToggleButton x:Name="HideColumn0Button" IsChecked="True" Width="80" Height="40">Hide C0</ToggleButton>
+                    <ToggleButton x:Name="HideColumn0Button" IsChecked="True" Width="80" Height="40" Content="Hide C0"/>
                 </StackPanel>
                 <StackPanel  Grid.Column="1">
                     <ToggleButton x:Name="HideColumn1Button" IsChecked="True" Width="80" Height="40">Hide C1</ToggleButton>
@@ -202,7 +202,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <Image Name="CurrentPhoto"
-                                  
+                                  Height="150"
                                        Margin="10" 
                                        MouseDown="OnMouseDown"/>
                         </StackPanel>
@@ -320,5 +320,5 @@
         </GroupBox>
     </Grid>
 
-    </Viewbox>
+
 </Window>
