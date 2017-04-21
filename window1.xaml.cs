@@ -187,7 +187,7 @@ namespace MediaManager
                 CurrentPhoto.Source = new CroppedBitmap(img, rect);
 #if VISUALCHILD
                 if (Visibility.Visible == CropSelector.Rubberband.Visibility)
-                    CropSelector.Rubberband.Visibility = Visibility.Hidden;
+                    CropSelector.Rubberband.Visibility = Visibility.Hidden; 
 #endif
 #if NoVISUALCHILD
                 if (CropSelector.ShowRect)

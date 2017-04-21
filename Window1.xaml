@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Media Manager"
         xmlns:pd="clr-namespace:MediaManager"
-        
+        Width="660"
+        Height="600"
         Loaded="WindowLoaded">
 
     <Window.Resources>
@@ -68,7 +69,7 @@
 
         <Grid Margin="20" Width="620" ShowGridLines="False" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"   />
                 <RowDefinition Height="15" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="250" />
