@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Media.Imaging;
 
+
 namespace MediaManager
 {
     public class ImageFile
@@ -69,6 +70,21 @@ namespace MediaManager
                 Add(new ImageFile(f.FullName));
         }
     }
+    
+    
+    //Database Connection Base
+
+    /*public class PhotoListContext : DbContext
+    {
+        public PhotoListContext(): base()
+        {
+
+        }
+
+        public DbSet<ImageFile> ImageFIles { get; set; }
+        
+
+    }*/
 
     public class PackageType
     {

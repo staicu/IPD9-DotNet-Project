@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Media Manager"
         xmlns:pd="clr-namespace:MediaManager"
-        WindowState="Maximized"
+        
         Loaded="WindowLoaded">
 
     <Window.Resources>
@@ -64,7 +64,7 @@
 
     </Window.Resources>
 
-    <Viewbox VerticalAlignment="Top" Stretch="Uniform">
+    
 
         <Grid Margin="20" Width="620" ShowGridLines="False" >
             <Grid.RowDefinitions>
@@ -259,5 +259,5 @@
 
 
         </Grid>
-    </Viewbox>
+    
 </Window>
