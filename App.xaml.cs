@@ -16,6 +16,7 @@ namespace MediaManager
             try
             {
                 db = new Database();
+                MessageBox.Show("We are connected to the database");
             }
             catch (SqlException e)
             {
