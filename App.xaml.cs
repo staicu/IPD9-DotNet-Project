@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows;
 using System.Windows.Data;
 
@@ -16,7 +17,8 @@ namespace MediaManager
             try
             {
                 db = new Database();
-                MessageBox.Show("We are connected to the database");
+                //MessageBox.Show("We are connected to the database");
+                
             }
             catch (SqlException e)
             {
@@ -24,6 +26,8 @@ namespace MediaManager
                 MessageBox.Show("Error opening database connection: " + e.Message);
                 Environment.Exit(1);
             }
+            string strFn = "..\\..\\Photos\\pic2.jpg";
+            FileInfo fiImage = new FileInfo(strFn);
 
             Window1 mainWindow = new Window1();
             mainWindow.Show();

@@ -5,6 +5,7 @@
         xmlns:pd="clr-namespace:MediaManager"
         Width="660"
         Height="600"
+        ResizeMode="NoResize"
         Loaded="WindowLoaded">
 
     <Window.Resources>
@@ -100,29 +101,31 @@
 
     </Window.Resources>
 
-    
 
-        <Grid Margin="20" Width="620" ShowGridLines="False" >
-            <Grid.RowDefinitions>
+
+    <Grid Margin="20" Width="620" ShowGridLines="False" >
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto"   />
-                <RowDefinition Height="15" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="250" />
-                <RowDefinition Height="120" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="400" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="250" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="5" Grid.ColumnSpan="3" Style="{DynamicResource TitleText}"><Run Language="en-ca" Text="Media Files"/></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
 
-            <ListBox Style="{DynamicResource PhotoListStyle}" 
+        <TextBlock Grid.Row="5" Grid.ColumnSpan="3" Style="{DynamicResource TitleText}"><Run Language="en-ca" Text="Media Files"/></TextBlock>
+
+        <ListBox Style="{DynamicResource PhotoListStyle}" 
                      Grid.Row="4" 
-                     Grid.ColumnSpan="3" 
+                     
+                     Grid.Column="1" 
                      Name ="PhotoListBox" 
                      Margin="0,0,0,20" 
                      DataContext="{Binding Source={StaticResource Photos}}" 
@@ -131,43 +134,43 @@
                      ItemContainerStyle="{DynamicResource PhotoListItem}" 
                      SelectedIndex="0" />
 
-            <StackPanel
+        <StackPanel
                 Grid.Row="3" Grid.Column="0"
                 Margin="10,20,10,20">
 
-                <Button 
+            <Button 
                     Name="RotateButton" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Center" 
                     Click="Rotate" 
                     Width="55"  				
                     Margin="2">
-                    Rotate
-                </Button>
+                Rotate
+            </Button>
 
-                <Button 
+            <Button 
                     Name="BWButton" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Center" 
                     Click="BlackAndWhite" 
                     Width="55"  				
                     Margin="2">
-                    B&amp;W
-                </Button>
+                B&amp;W
+            </Button>
 
-                <Button 
+            <Button 
                     Name="CropButton"
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Center" 
                     Click="Crop" 
                     Width="55"  				
                     Margin="2">
-                    Crop
-                </Button>
+                Crop
+            </Button>
 
-            </StackPanel>
+        </StackPanel>
 
-            <Button Grid.Row="3" Grid.Column="0"
+        <Button Grid.Row="3" Grid.Column="0"
                     Name="UndoButton" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Center" 
@@ -175,29 +178,29 @@
                     IsEnabled="False" 
                     Width="55"  				
                     Margin="2">
-                Undo
-            </Button>
+            Undo
+        </Button>
 
-            <Image Name="CurrentPhoto" 
+        <Image Name="CurrentPhoto" 
                    Grid.Row="3" 
                    Grid.Column="1" 
                    Margin="15,10,5,10" 
                    MouseDown="OnMouseDown"/>
 
-            <Grid 
+        <Grid 
                 Grid.Row="0" Grid.Column="1" 
                 HorizontalAlignment="Center" 
                 Margin="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <ComboBox
+            <ComboBox
                     Grid.Row="0" Grid.Column="0" 
                     Margin="0,0,4,0" 
                     VerticalAlignment="Center" 
@@ -207,14 +210,14 @@
                     Width="110" 
                     SelectedIndex="0" />
 
-                <Button 
+            <Button 
                     Grid.Row="0" Grid.Column="1" 
                     Click="AddToShoppingCart" 
                     VerticalAlignment="Center" 
                     Width="100"  
                     IsDefault="True" Content="Save to List"/>
 
-                <Button 
+            <Button 
                     Grid.Row="1" Grid.Column="1" 
                     Name="RemoveButton" 
                     Click="RemoveShoppingCartItem" 
@@ -222,33 +225,33 @@
                     IsEnabled="False" 
                     Width="100" 
                     Margin="10" >
-                    Remove Item
-                </Button>
+                Remove Item
+            </Button>
 
-            </Grid>
+        </Grid>
 
-            <Grid Grid.Row="3" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
+        <Grid Grid.Row="3" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
                            Foreground="MidnightBlue" 
                            FontSize="13px" 
                            Margin="2" 
                            HorizontalAlignment="Center"><Run Language="en-ca" Text="Selected Files"/></TextBlock>
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ShoppingCartStyle}" 
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ShoppingCartStyle}" 
                          Name="ShoppingCartListBox" 
                          Grid.Row="1" 
                          Width="100" 
                          DataContext="{Binding Source={StaticResource ShoppingCart}}" 
                          ItemContainerStyle="{DynamicResource ShoppingCartItem}" 
-                         ItemsSource="{Binding}" />
-            </Grid>
+                         ItemsSource="{Binding}" Margin="30,3,-30,-3" />
+        </Grid>
 
-            <StackPanel
+        <StackPanel
                 Grid.Row="5" Grid.Column="2"  Margin="0,0,0,60"  >
-                <Button 
+            <Button 
                     Name="UploadButton"
                     Click="Upload" 
                     VerticalAlignment="Bottom" 
@@ -257,43 +260,29 @@
                     Margin="2"
                     IsEnabled="False"
                      >
-                    Sales List
-                </Button>
+                Sales List
+            </Button>
 
-                <ProgressBar 
+            <ProgressBar 
                     Name="UploadProgressBar" 
                     
                     VerticalAlignment="Top" 
                     Margin="0,10,0,0" />
-            </StackPanel>
-            <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5"/>
-            <GridSplitter Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5"/>
+        </StackPanel>
 
-            <GridSplitter 
-                ResizeDirection="Rows" 
-                Grid.Column="0"
-            Grid.ColumnSpan="3"
-                Grid.Row="1"
-            Width="Auto" 
-            Height="3"
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
-                Margin="0"/>
-            
-            <GridSplitter 
-                ResizeDirection="Rows" 
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Grid.Row="5"
-                Width="Auto" 
-                Height="3"
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
-                Margin="0"
-                Background="#FFBCBCBC"/>
+        <GridSplitter HorizontalAlignment="Right"   
+                      VerticalAlignment="Stretch"   
+                      Grid.Column="0"   
+                      Width="5" Background="Silver"
+                      Grid.RowSpan="6">
+        </GridSplitter>
+        <GridSplitter HorizontalAlignment="Left"   
+                          VerticalAlignment="Stretch"   
+                          Grid.Column="2"   
+                          Width="5" Background="Silver"  Grid.RowSpan="6" MaxWidth="50">
+        </GridSplitter>
 
 
+    </Grid>
 
-        </Grid>
-    
 </Window>
