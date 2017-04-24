@@ -8,6 +8,17 @@
         Loaded="WindowLoaded">
 
     <Window.Resources>
+        <!-- STYLES -->
+
+        <Style TargetType="{x:Type pd:Window1}">
+            <Setter Property="Background" Value="{DynamicResource WindowGradient}" />
+        </Style>
+
+        <Style x:Key="TitleText" TargetType="{x:Type TextBlock}" >
+            <Setter Property="FontFamily" Value="Black" />
+            <Setter Property="FontSize" Value="20px" />
+            <Setter Property="Foreground" Value="Aquamarine" />
+        </Style>
 
 
         <!-- data TEMPLATES testing git-->
@@ -35,7 +46,31 @@
                 <Image Source="{Binding Photo}" />
             </Border>
         </DataTemplate>
+        <!-- SHOPPING CART TEMPLATE -->
 
+        <Style x:Key="ShoppingCartStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}" >
+                        <Border 
+                            BorderBrush="Gray" 
+                            BorderThickness="1" 
+                            CornerRadius="6" 
+                            Background="{DynamicResource ShoppingCartGradient}" >
+                            <ScrollViewer>
+                                <WrapPanel
+                                    ItemHeight="70" 
+                                    ItemWidth="70" 
+                                    Margin="0,25,0,0"
+                                    IsItemsHost="True" 
+                                    Orientation="Horizontal" 
+                                    HorizontalAlignment="Center"  />
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- PHOTOLIST TEMPLATE -->
 
         <Style x:Key="PhotoListStyle" TargetType="{x:Type ListBox}">
