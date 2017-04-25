@@ -78,10 +78,28 @@ design layout of the page
 21 april
 fix bug .No reference to images.
 issues with Rubberband
+finishing style for buttons
 
 
+24 april
+laurian
+database connection
+image representation in database
+wokr on the main window style
+
+alireza
+redesign the database for images
+download images
+upload images
+
+ 25 april
+ laurian
+ testing application to get image and store them on the database
+ integrating application with the main window
 
 
-
-
+ 
+ alireza
+ working on the UI gridsplitter 
+testing gridsplitter
 
