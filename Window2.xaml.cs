@@ -64,7 +64,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
 
-            BindImageList();
+            
             DataTable dataTable = ds.Tables[0];
 
             foreach (DataRow row in dataTable.Rows)
@@ -165,7 +165,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private void btnSave_Image_Click(object sender, RoutedEventArgs e)
         {
-            BindImageList();
+            
             DataTable dataTable = ds.Tables[0];
 
             foreach (DataRow row in dataTable.Rows)
