@@ -26,11 +26,12 @@ namespace MediaManager
                 MessageBox.Show("Error opening database connection: " + e.Message);
                 Environment.Exit(1);
             }
-            string strFn = "..\\..\\Photos\\pic2.jpg";
-            FileInfo fiImage = new FileInfo(strFn);
+            
 
             Window1 mainWindow = new Window1();
             mainWindow.Show();
+            Window2 window2 = new Window2();
+            window2.Show();
 
             mainWindow.Photos = (PhotoList)(this.Resources["Photos"] as ObjectDataProvider).Data;
             mainWindow.Photos.Path = "..\\..\\Photos";
