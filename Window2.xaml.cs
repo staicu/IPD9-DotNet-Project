@@ -189,7 +189,21 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                     bi.EndInit();
                     image2.Source = bi;
                     //save file image to directory
-                    
+                    try
+                    {
+                        if (img != null)
+                        {
+                            img.Save("..\\PhotosSaved\\myBitmap.bmp");
+                            
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("There was a problem saving the file." +
+                                        "Check the file permissions.");
+                    }
+
+
                 }
 
             }
