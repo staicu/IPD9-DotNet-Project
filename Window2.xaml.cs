@@ -19,6 +19,11 @@ using System.Drawing.Imaging;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using Image = System.Windows.Controls.Image;
+using System;
+using System.Data.SqlClient;
+using System.IO;
+using System.Windows;
+using System.Windows.Data;
 
 namespace MediaManager
 {
@@ -299,6 +304,13 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnNext(object sender, RoutedEventArgs e)
+        {
+            
+            //mainWindow.Show();
+            
         }
 
         
