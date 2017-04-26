@@ -29,7 +29,7 @@ namespace MediaManager
             
 
             Window1 mainWindow = new Window1();
-            mainWindow.Show();
+           // mainWindow.Show();
             Window2 window2 = new Window2();
             window2.Show();
 

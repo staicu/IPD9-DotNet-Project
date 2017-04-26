@@ -16,6 +16,8 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using Image = System.Windows.Controls.Image;
 
 namespace MediaManager
@@ -69,7 +71,7 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
             foreach (DataRow row in dataTable.Rows)
             {
-                if (row[0].ToString() == cbImages.SelectedItem.ToString())
+                if (row[0].ToString() == lvPictureResult.SelectedItem.ToString())
                 {
                     //Store binary data read from the database in a byte array
                     byte[] blob = (byte[]) row[1];
@@ -121,6 +123,10 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                             int result = cmd.ExecuteNonQuery();
                             if (result == 1)
                             {
+                                TimeSpan scaleDuration = new TimeSpan(0, 0, 0, 0, 1000);
+                                DoubleAnimation ProgressAnimation = new DoubleAnimation(0, 100, scaleDuration, FillBehavior.Stop);
+                                ProgressBar2.BeginAnimation(ProgressBar.ValueProperty, ProgressAnimation);
+
                                 MessageBox.Show("Image added successfully.");
                                 BindImageList();
                             }
@@ -148,12 +154,12 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                         adapter.Fill(ds);
                         DataTable dt = ds.Tables[0];
 
-                        cbImages.Items.Clear();
+                        lvPictureResult.Items.Clear();
 
                         foreach (DataRow dr in dt.Rows)
-                            cbImages.Items.Add(dr["id"].ToString());
+                            lvPictureResult.Items.Add(dr["id"].ToString());
 
-                        cbImages.SelectedIndex = 0;
+                        lvPictureResult.SelectedIndex = 0;
                     }
                 }
             }
@@ -165,12 +171,17 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private void btnSave_Image_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            TimeSpan scaleDuration = new TimeSpan(0, 0, 0, 0, 1000);
+            DoubleAnimation ProgressAnimation = new DoubleAnimation(0, 100, scaleDuration, FillBehavior.Stop);
+            ProgressBar1.BeginAnimation(ProgressBar.ValueProperty, ProgressAnimation);
+
+
             DataTable dataTable = ds.Tables[0];
 
             foreach (DataRow row in dataTable.Rows)
             {
-                if (row[0].ToString() == cbImages.SelectedItem.ToString())
+                if (row[0].ToString() == lvPictureResult.SelectedItem.ToString())
                 {
                     //Store binary data read from the database in a byte array
                     byte[] blob = (byte[]) row[1];
@@ -193,8 +204,9 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                     {
                         if (img != null)
                         {
-                            img.Save("..\\PhotosSaved\\myBitmap.bmp");
-                            
+                            img.Save("..\\..\\PhotosSaved\\" + lvPictureResult.SelectedItem.ToString());
+                            MessageBox.Show("Image saved successfully.");
+
                         }
                     }
                     catch (Exception)
@@ -209,5 +221,86 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             }
 
         }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // ... Get TabControl reference.
+            var item = sender as TabControl;
+            // ... Set Title to selected tab header.
+            var selected = item.SelectedItem as TabItem;
+            this.Title = selected.Header.ToString();
+        }
+
+        
+        private void BindImageListView()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(constr))
+                {
+                    conn.Open();
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM tbl_Image", conn))
+                    {
+                        ds = new DataSet("myDataSet");
+                        adapter.Fill(ds);
+                        DataTable dt = ds.Tables[0];
+
+                        lvPictureResult.Items.Clear();
+
+                        foreach (DataRow dr in dt.Rows)
+                            lvPictureResult.Items.Add(dr["id"].ToString());
+
+                        lvPictureResult.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBindList1_Click(object sender, RoutedEventArgs e)
+        {
+            BindImageListView();
+        }
+        private void btnBindList2_Click(object sender, RoutedEventArgs e)
+        {
+            BindImageListView1();
+        }
+
+        private void BindImageListView1()
+        {
+
+            string query = tbPictureSearch.Text;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(constr))
+                {
+                    conn.Open();
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM tbl_Image WHERE id LIKE '%"+query+"%'", conn))
+                    {
+                        ds = new DataSet("myDataSet");
+                        adapter.Fill(ds);
+                        DataTable dt = ds.Tables[0];
+
+                        lvPictureResult.Items.Clear();
+
+                        foreach (DataRow dr in dt.Rows)
+                            lvPictureResult.Items.Add(dr["id"].ToString());
+
+                        lvPictureResult.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        
     }
 }
