@@ -308,11 +308,11 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
        
 
-        private void btnLoadWin1_Click(object sender, System.Windows.RoutedEventArgs e)
+        public void btnLoadWin1_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           
-        
-        
+            Window1 inputDialog = new Window1();
+            inputDialog.ShowDialog();
+
         }
 
         

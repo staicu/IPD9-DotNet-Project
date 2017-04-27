@@ -45,7 +45,7 @@ namespace MediaManager
         {
             String path = ((sender as ListBox).SelectedItem.ToString());
             BitmapSource img = BitmapFrame.Create(new Uri(path));
-            CurrentPhoto.Source = img;
+          //  CurrentPhoto.Source = img;
             ClearUndoStack();
             if (CropSelector != null)
             {

@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:pd="clr-namespace:MediaManager"
-        Title="Image Selection" Height="519.068" Width="614.192"
+        Title="Image Selection" Height="586" Width="610"
         MinWidth="620" MinHeight="540" 
         WindowStartupLocation="CenterScreen"
         
@@ -103,15 +103,35 @@
 
     </Window.Resources>
 
+
+
     <Grid >
-        <TabControl HorizontalAlignment="Left"
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,10,10,10">
+            <Menu>
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Quit" />
+                </MenuItem>
+
+            </Menu>
+        </StackPanel>
+        <TabControl 
+            Grid.Row="1"
+            HorizontalAlignment="Left"
                     MinWidth="600"
                     Height="500"
                     VerticalAlignment="Top"
                     Width="585.479"
                     SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Picture Selection">
-                <Grid Background="#FFE5E5E5" Margin="0,12,0,-12">
+                <Grid Background="#FFE5E5E5" Margin="0,12,0,-2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
                         <ColumnDefinition Width="Auto" />
@@ -185,7 +205,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Picture Upload">
+            <TabItem Header="Add to Database">
                 <Grid Background="#FFE5E5E5" Margin="10,-9,-10,9">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="11*"/>
