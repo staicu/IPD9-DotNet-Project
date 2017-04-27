@@ -21,6 +21,7 @@ namespace MediaManager
             UndoStack = new Stack();
         }
 
+
         private void WindowLoaded(object sender, EventArgs e)
         {
             AdornerLayer layer = AdornerLayer.GetAdornerLayer(CurrentPhoto);

@@ -306,11 +306,13 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             }
         }
 
-        private void btnNext(object sender, RoutedEventArgs e)
+       
+
+        private void btnLoadWin1_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
-            //mainWindow.Show();
-            
+           
+        
+        
         }
 
         
