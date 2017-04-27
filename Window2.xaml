@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:pd="clr-namespace:MediaManager"
         Title="Image Selection" Height="519.068" Width="614.192"
-        MinWidth="620" MinHeight="520" 
+        MinWidth="620" MinHeight="540" 
         WindowStartupLocation="CenterScreen"
         
         >
@@ -78,7 +78,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBox}" >
-                        <Border  >
+                        <Border  
+                            BorderBrush="Gray" 
+                            BorderThickness="1" 
+                            CornerRadius="6" 
+                            Background="{DynamicResource ShoppingCartGradient}"
+                            
+                            >
                             <ScrollViewer 
                                 VerticalScrollBarVisibility="Disabled" 
                                 HorizontalScrollBarVisibility="Auto">
@@ -100,14 +106,14 @@
     <Grid >
         <TabControl HorizontalAlignment="Left"
                     MinWidth="600"
-                    Height="479"
+                    Height="500"
                     VerticalAlignment="Top"
                     Width="585.479"
                     SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Picture Selection">
                 <Grid Background="#FFE5E5E5" Margin="0,12,0,-12">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="70*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="100*" />
                         <ColumnDefinition Width="Auto" />
@@ -119,7 +125,21 @@
                         <TextBox x:Name="tbPictureSearch" Height="29" TextWrapping="Wrap" Margin="10,10,10,10" />
                         <Button Content="Search" Height="23" HorizontalAlignment="Center"  x:Name="btnBindList2" VerticalAlignment="Top"   Margin="10,10,10,10" Click="btnBindList2_Click"  />
 
-                        <ListView Margin="10,10,10,10" x:Name="lvPictureResult"  Height="229">
+                        <ListView Margin="10,10,10,10" x:Name="lvPictureResult"  Height="229"
+                                  BorderBrush="Gray" 
+                                  BorderThickness="5" 
+                                  
+                                  
+                                  >
+                            <ListView.Template>
+                                <ControlTemplate TargetType="{x:Type ListView}">
+                                    <Border CornerRadius="4" BorderThickness="1" BorderBrush="Gray">
+                                        <ScrollViewer>
+                                            <ItemsPresenter/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </ControlTemplate>
+                            </ListView.Template>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn  Width="100" Header="Photo ID"/>
@@ -144,7 +164,7 @@
                         <ListBox Style="{DynamicResource PhotoListStyle}" 
                       
                                  Name ="PhotoListBox" 
-                                 Margin="0,0,0,20" 
+                                 Margin="10,10,10,10" 
                                  DataContext="{Binding Source={StaticResource Photos}}" 
                                  
                                  ItemsSource="{Binding }" 
