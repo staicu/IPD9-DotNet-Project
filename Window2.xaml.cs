@@ -310,8 +310,8 @@ Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public void btnLoadWin1_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //Window1 inputDialog = new Window1();
-            //inputDialog.ShowDialog();
+            Window1 inputDialog = new Window1();
+            inputDialog.ShowDialog();
 
         }
 
